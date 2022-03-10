@@ -6,7 +6,7 @@ import GoalInput from "./components/GoalInput";
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
-  const [isAddMode, setIsAtMode] = useState(false);
+  const [isAddMode, setIsAddMode] = useState(false);
 
   const addGoalHandler = (goalTitle) => {
     if (goalTitle !== "") {
@@ -17,6 +17,8 @@ export default function App() {
     } else {
       alert("You must add a value");
     }
+
+    setIsAddMode(false);
   };
 
   const removeGoalHandler = (goalId) => {
@@ -27,7 +29,7 @@ export default function App() {
 
   return (
     <View style={styles.screen}>
-      <Button title="Add New Goal" onPress={() => setIsAtMode(true)} />
+      <Button title="Add New Goal" onPress={() => setIsAddMode(true)} />
       <GoalInput visible={isAddMode} addGoal={addGoalHandler} />
       <FlatList
         keyExtractor={(item, index) => item.uid}
